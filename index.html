@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   
   <title>Hexo</title>
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://yoursite.com/index.html">
@@ -12,263 +12,83 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.png">
+    <link rel="icon" href="/favicon.ico">
   
-  <link rel="stylesheet" href="/css/style.css">
-  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
+  <link rel="stylesheet" href="/css/typing.css">
 </head>
-<body>
-  <div id="container">
-    <div class="mobile-nav-panel">
-	<i class="icon-reorder icon-large"></i>
-</div>
-<header id="header">
-	<h1 class="blog-title">
-		<a href="/">Hexo</a>
-	</h1>
-	<nav class="nav">
-		<ul>
-			<li><a href="/">Home</a></li><li><a href="/archives">Archives</a></li>
-			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
-			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
-		</ul>
-	</nav>
-	<div id="search-form-wrap">
-		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-	</div>
-</header>
-    <div id="main">
+
+  
+    
+    <body class="home-body dark">
+    
+  
+      <div id="container" class="container">
+        <div class="home">
+  <div class="content">
+    <div class="profile">
+      <h1 class="nickname">ChonnyChu</h1>
+      <div class="description">
+        <p><p>I am a code enthusiast, web developer, open-source contributor, student and lifelong learner interested in everything.</p>
+</p>
+      </div>
+    </div>
+    <hr/>
+    <ul class="links">
       
-  
-    <article id="post-redux-saga-使用教學" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2017/05/17/redux-saga-使用教學/" class="article-date">
-  <time datetime="2017-05-17T03:15:08.000Z" itemprop="datePublished">2017-05-17</time>
-</a>
-		</span>
-		<span class="meta-elements author">John Doe</span>
-		<div class="commentscount">
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2017/05/17/redux-saga-使用教學/">redux-saga-使用教學</a>
-    </h1>
-  
+        <li>
+          <a href="/archives">Blog</a>
+        </li>
+      
+        <li>
+          <a href="https://github.com/FallOutChonny">GitHub</a>
+        </li>
+      
+        <li>
+          <a href="http://instagram.com/">Instagram</a>
+        </li>
+      
+        <li>
+          <a href="http://facebook.com/">Facebook</a>
+        </li>
+      
+        <li>
+          <a href="http://twitter.com/">Twitter</a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
 
-	</header>
-	<div class="entry-content">
-		
-    	<h3 id="何謂-redux-saga"><a href="#何謂-redux-saga" class="headerlink" title="何謂 redux-saga?"></a>何謂 redux-saga?</h3><ul>
-<li>redux 的 middleware</li>
-<li>用於管理 Redux 非同步資料流的處理</li>
-<li>將 saga pattern 實踐在 react/redux 應用上</li>
-</ul>
-<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><ul>
-<li>集中處理 redux 副作用 (side effect, 一般泛指非同步) 問題</li>
-<li>被實現為 generator (es6 feature)</li>
-<li>類似 redux-thunk middleware</li>
-<li>watch/worker（監聽-&gt;執行） 的工作形式</li>
-</ul>
-<h3 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h3><ul>
-<li>保持 action 和 reducer 的簡單純粹</li>
-<li>可將商業邏輯從 React Component 中抽出來，保持 View 的乾淨</li>
-<li>程式碼更容易被測試和閱讀</li>
-<li>redux-saga 提供了豐富的 API 實現 saga pattern</li>
-<li>處理複雜非同步問題，如果商業邏輯複雜，快讓 redux-saga 來拯救你</li>
-<li>使用 saga 處理資料流非常清晰，雖然一開始寫會比較繁瑣，但日後程式碼會更好維護</li>
-</ul>
-<h3 id="缺點"><a href="#缺點" class="headerlink" title="缺點"></a>缺點</h3><ul>
-<li>其他的 middleware 可能較難以和 redux-saga 搭配，使用時或許要花費一些代價，用 redux-saga 重構部分程式</li>
-<li>babel-loader 轉出來的 source map 會錯位，要手動加 debugger 比較好測試</li>
-</ul>
-<h3 id="用程式碼快速了解-redux-saga-特性"><a href="#用程式碼快速了解-redux-saga-特性" class="headerlink" title="用程式碼快速了解 redux-saga 特性"></a>用程式碼快速了解 redux-saga 特性</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123;call, take, fork&#125; <span class="keyword">from</span> <span class="string">'redux-saga'</span>;</div><div class="line"><span class="keyword">import</span> * <span class="keyword">as</span> ActionTypes <span class="keyword">from</span> <span class="string">'./actionTypes'</span>;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * worker</div><div class="line"> * API 呼叫，並依據結果(成功、失敗) 更新redux state</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">loadCourse</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: LOAD_DATA_REQUEST &#125;);</div><div class="line"></div><div class="line">  <span class="keyword">try</span> &#123;</div><div class="line">    <span class="comment">// 使用call呼叫 api</span></div><div class="line">    <span class="keyword">const</span> result = <span class="keyword">yield</span> call(api.getCourse, payload);</div><div class="line"></div><div class="line">    <span class="comment">// do your staff with result</span></div><div class="line">    <span class="comment">// ex: normalize format</span></div><div class="line"></div><div class="line">    <span class="keyword">yield</span> put(&#123;</div><div class="line">      <span class="attr">type</span>: LOAD_DATA_SUCCESS,</div><div class="line">      <span class="attr">payload</span>: result,</div><div class="line">    &#125;);</div><div class="line">  &#125; <span class="keyword">catch</span> (error) &#123;</div><div class="line">    <span class="keyword">yield</span> put(&#123;</div><div class="line">      <span class="attr">type</span>: LOAD_DATA_FAILURE,</div><div class="line">      error</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> *watcher</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">watchGetCourse</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">    <span class="comment">// 創建一個監聽“程序”</span></div><div class="line">    <span class="keyword">yield</span> take(ActionTypes.GET_COURSE)</div><div class="line">    <span class="comment">// 監聽到 GET_COURSE event後，依序啟動下面的程序</span></div><div class="line">    <span class="keyword">yield</span> fork(loadCourse);</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>簡單說明一下上述的程式碼：</p>
-<ol>
-<li>function 後面要加上 *，這是 generator 的寫法</li>
-<li>watchGetCourse 會在 app 執行期間持續地監聽 GET_COURSE action</li>
-<li>當GET_COURSE action 被執行時，調用 loadCourse 這個 saga function</li>
-<li>若 api 呼叫成功，dispatch LOAD_DATA_SUCCESS action，將資料更新回 store</li>
-<li>若 api 呼叫失敗，dispatch LOAD_DATA_FAILURE action，將 error log 寫進 store</li>
-</ol>
-<h3 id="Effects"><a href="#Effects" class="headerlink" title="Effects"></a>Effects</h3><p>Effect 指的是一個 javascript object，裡面包含描述副作用的訊息，redux-saga 實作了豐富的 Effect API 幫助我們實現 Saga Effect。在 redux-saga 世界裡，所有的 Effect 都必須被 yield，由 yield 傳遞给 sagaMiddleware 執行。原則上來說，所有的 yield 後面也只能跟 Effect。</p>
-<p>常用 Effects 的功能介紹：</p>
-<h4 id="1、take"><a href="#1、take" class="headerlink" title="1、take"></a>1、take</h4><p>等待 redux dispatch 匹配某個 pattern 的 action。<br>在上面例子中，先等待一個取得課程的 action ，然後執行取得課程的 saga：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">  <span class="keyword">yield</span> take(ActionTypes.GET_COURSE)</div><div class="line">  <span class="keyword">yield</span> fork(loadCourse);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2、takeEvery"><a href="#2、takeEvery" class="headerlink" title="2、takeEvery"></a>2、takeEvery</h4><p>作用和 take 一樣，不過不用寫 while，另外在被調用的 saga function 中可以直接取出 action 中的 payload 當參數<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">login</span>(<span class="params">&#123; username, password &#125;</span>) </span>&#123;</div><div class="line">  <span class="comment">// do login</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">watchLogin</span>(<span class="params"></span>)</span></div><div class="line">  <span class="title">yield</span> <span class="title">takeEvery</span>(<span class="params"><span class="string">'LOGIN_REQUEST'</span>, login</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="3、fork"><a href="#3、fork" class="headerlink" title="3、fork"></a>3、fork</h4><p>調用 saga function，可以返回執行結果。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">yield</span> fork(loadCourse);</div><div class="line"><span class="keyword">const</span> &#123; response &#125; = <span class="keyword">yield</span> fork(api.getCourse);</div></pre></td></tr></table></figure></p>
-<h4 id="4、call"><a href="#4、call" class="headerlink" title="4、call"></a>4、call</h4><p>與 fork 作用相同，差別在 fork 是非阻塞(non-block) 型調用，call 是阻塞(block) 型調用，所以對有順序性的操作你可以像底下這樣子寫。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> categories = <span class="keyword">yield</span> call(api.getCourseCategories);</div><div class="line"><span class="keyword">const</span> courses = <span class="keyword">yield</span> call(api.getCourses, &#123;categories&#125;);</div></pre></td></tr></table></figure></p>
-<h4 id="5、put"><a href="#5、put" class="headerlink" title="5、put"></a>5、put</h4><p>作用和 redux 中的 dispatch 相同。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'GET_COURSE'</span> &#125;);</div><div class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'GET_COURSE_REQUEST'</span>, id &#125;);</div><div class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'GET_COURSE_SUCCESS'</span>, data &#125;);</div><div class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'GET_COURSE_FAILURE'</span>, error &#125;);</div></pre></td></tr></table></figure></p>
-<h4 id="6、select"><a href="#6、select" class="headerlink" title="6、select"></a>6、select</h4><p>作用和 redux thunk 中的 getState 相同，若 saga 中需要使用 redux state 時，可以透過 select 來取用。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> id = <span class="keyword">yield</span> select(<span class="function"><span class="params">state</span> =&gt;</span> state.id);</div><div class="line"><span class="keyword">if</span> (id) &#123;</div><div class="line">  <span class="keyword">yield</span> call(api.getCourse(id));</div><div class="line">&#125; esle &#123;</div><div class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'id is undefined'</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="7、all"><a href="#7、all" class="headerlink" title="7、all"></a>7、all</h4><p>如果我們同時要 call 好幾支不同的 api，你可以這樣子寫，作用和 Promise.all 效果一樣，會等所有 call api 執行完後才往下繼續執行<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> [</div><div class="line">  response: &#123; course &#125;,</div><div class="line">  <span class="attr">response</span>: &#123; user &#125;,</div><div class="line">  <span class="attr">response</span>: &#123; order &#125;,</div><div class="line">] = <span class="keyword">yield</span> all(&#123;</div><div class="line">  call(api.getCourse, courseId),</div><div class="line">  call(api.getUser, userId),</div><div class="line">  call(api.getOrder, orderId),</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
-<h3 id="如何在專案中導入？"><a href="#如何在專案中導入？" class="headerlink" title="如何在專案中導入？"></a>如何在專案中導入？</h3><h4 id="1、安裝-redux-saga"><a href="#1、安裝-redux-saga" class="headerlink" title="1、安裝 redux-saga"></a>1、安裝 redux-saga</h4><figure class="highlight zsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install redux-saga --save</div></pre></td></tr></table></figure>
-<p>或是透過 yarn</p>
-<figure class="highlight zsh"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add redux-saga</div></pre></td></tr></table></figure>
-<h4 id="2、Saga-Middleware"><a href="#2、Saga-Middleware" class="headerlink" title="2、Saga Middleware"></a>2、Saga Middleware</h4><p>在建立 store 時，建立 saga middleware<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; createStore <span class="keyword">as</span> _createStore, applyMiddleware, compose &#125; <span class="keyword">from</span> <span class="string">'redux'</span>;</div><div class="line"><span class="keyword">import</span> &#123; createPersistor &#125; <span class="keyword">from</span> <span class="string">'redux-persist'</span>;</div><div class="line"><span class="keyword">import</span> &#123; routerMiddleware &#125; <span class="keyword">from</span> <span class="string">'react-router-redux'</span>;</div><div class="line"><span class="keyword">import</span> createSagaMiddleware, &#123; END &#125; <span class="keyword">from</span> <span class="string">'redux-saga'</span>;</div><div class="line"><span class="keyword">import</span> reducer <span class="keyword">from</span> <span class="string">'./reducer'</span>;</div><div class="line"><span class="keyword">import</span> sagaManager <span class="keyword">from</span> <span class="string">'./sagaManager'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span> <span class="title">createStore</span>(<span class="params">history, client, data, persistConfig = null</span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> sagaMiddleware = createSagaMiddleware();</div><div class="line">  <span class="keyword">const</span> middleware = [</div><div class="line">    reduxRouterMiddleware,</div><div class="line">    sagaMiddleware</div><div class="line">  ];</div><div class="line"></div><div class="line">  <span class="keyword">let</span> enhancers = [applyMiddleware(...middleware)];</div><div class="line"></div><div class="line">  <span class="keyword">const</span> finalCreateStore = compose(...enhancers)(_createStore);</div><div class="line">  <span class="keyword">const</span> store = finalCreateStore(reducer, data);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (persistConfig) &#123;</div><div class="line">    createPersistor(store, persistConfig);</div><div class="line">    store.dispatch(&#123; <span class="attr">type</span>: <span class="string">'PERSIST'</span> &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  sagaManager.startSagas(sagaMiddleware);</div><div class="line"></div><div class="line">  <span class="keyword">if</span> (__DEVELOPMENT__ &amp;&amp; <span class="built_in">module</span>.hot) &#123;</div><div class="line">    <span class="built_in">module</span>.hot.accept(<span class="string">'./reducer'</span>, () =&gt; &#123;</div><div class="line">      store.replaceReducer(<span class="built_in">require</span>(<span class="string">'./reducer'</span>));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    <span class="built_in">module</span>.hot.accept(<span class="string">'./sagaManager'</span>, () =&gt; &#123;</div><div class="line">      sagaManager.cancelSagas(store);</div><div class="line">      <span class="built_in">require</span>(<span class="string">'./sagaManager'</span>).default.startSagas(sagaMiddleware);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  store.runSaga = sagaMiddleware.run;</div><div class="line">  store.close = <span class="function"><span class="params">()</span> =&gt;</span> store.dispatch(END);</div><div class="line"></div><div class="line">  <span class="keyword">return</span> store;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h4 id="3、建立一個-sagaManager"><a href="#3、建立一個-sagaManager" class="headerlink" title="3、建立一個 sagaManager"></a>3、建立一個 sagaManager</h4><p>透過 Saga Manager 統一管理專案裡所有的 saga<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; fork, cancel, take &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span>;</div><div class="line"><span class="keyword">import</span> authSaga <span class="keyword">from</span> <span class="string">'./modules/auth/authSaga'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span>* <span class="title">sagas</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> [</div><div class="line">    ...authSaga,</div><div class="line">  ];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> rootSaga = [sagas];</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  startSagas(sagaMiddleware) &#123;</div><div class="line">    rootSaga.forEach(<span class="function">(<span class="params">saga</span>) =&gt;</span> sagaMiddleware.run(saga));</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
-<h3 id="With-Hot-Reload"><a href="#With-Hot-Reload" class="headerlink" title="With Hot Reload"></a>With Hot Reload</h3><p>目前 redux-saga 官方尚未支援 Hot reload，必須要在專案中做些修改才行<br><a href="https://gist.github.com/markerikson/dc6cee36b5b6f8d718f2e24a249e0491" target="_blank" rel="external">Webpack React/Redux Hot Module Reloading (HMR) example</a></p>
-<p>在 sagaManager 中加入以下內容<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> CANCEL_SAGAS_HMR = <span class="string">'CANCEL_SAGAS_HMR'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createAbortableSaga</span>(<span class="params">saga</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'development'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>* <span class="title">main</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">const</span> sagaTask = <span class="keyword">yield</span> fork(saga);</div><div class="line">      <span class="keyword">yield</span> take(CANCEL_SAGAS_HMR);</div><div class="line">      <span class="keyword">yield</span> cancel(sagaTask);</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> saga;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  startSagas(sagaMiddleware) &#123;</div><div class="line">    rootSaga.map(createAbortableSaga).forEach(<span class="function">(<span class="params">saga</span>) =&gt;</span> sagaMiddleware.run(saga));</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  cancelSagas(store) &#123;</div><div class="line">    store.dispatch(&#123; <span class="attr">type</span>: CANCEL_SAGAS_HMR &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+      </div>
+      
+  <footer id="footer" class="home-footer footer">
+    <div id="copyright" class="copyright">
+      &copy; 2017 Chonny Chu  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme &copy; <a href="https://github.com/geekplux" target="_blank">GeekPlux</a>
 
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-			</span>
-		</div>
-	</footer>
-	
-</article>
+      </div>
+    </footer>
+
+      
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 
 
-	<hr class="article-devider">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
 
 
 
-  
-    <article id="post-如何有效減少-webpack-打包時間" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2017/04/28/如何有效減少-webpack-打包時間/" class="article-date">
-  <time datetime="2017-04-28T09:26:39.000Z" itemprop="datePublished">2017-04-28</time>
-</a>
-		</span>
-		<span class="meta-elements author">John Doe</span>
-		<div class="commentscount">
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2017/04/28/如何有效減少-webpack-打包時間/">如何有效減少 Webpack 打包時間？</a>
-    </h1>
-  
-
-	</header>
-	<div class="entry-content">
-		
-    	<h1 id="This-is-a-book"><a href="#This-is-a-book" class="headerlink" title="This is a book"></a>This is a book</h1><h2 id="TEST"><a href="#TEST" class="headerlink" title="TEST"></a>TEST</h2>
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-			</span>
-		</div>
-	</footer>
-	
-</article>
-
-
-	<hr class="article-devider">
 
 
 
-  
-    <article id="post-hello-world" class="post">
-	<footer class="entry-meta-header">
-		<span class="meta-elements date">
-			<a href="/2016/10/15/hello-world/" class="article-date">
-  <time datetime="2016-10-15T14:30:09.000Z" itemprop="datePublished">2016-10-15</time>
-</a>
-		</span>
-		<span class="meta-elements author">John Doe</span>
-		<div class="commentscount">
-			
-		</div>
-	</footer>
-	
-	<header class="entry-header">
-		
-  
-    <h1 itemprop="name" class="entry-title">
-      <a class="article-title" href="/2016/10/15/hello-world/">Hello World</a>
-    </h1>
-  
-
-	</header>
-	<div class="entry-content">
-		
-    	<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-    
-	</div>
-	<footer class="entry-footer">
-		<div class="entry-meta-footer">
-			<span class="category">
-				
-			</span>
-			<span class="tags">
-				
-			</span>
-		</div>
-	</footer>
-	
-</article>
-
-
-	<hr class="article-devider">
-
-
-
-  
-  
 
     </div>
-    <div class="mb-search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="Search">
-    <input type="hidden" name="q" value="site:yoursite.com">
-  </form>
-</div>
-<footer id="footer">
-	<h1 class="footer-blog-title">
-		<a href="/">Hexo</a>
-	</h1>
-	<span class="copyright">
-		&copy; 2017 John Doe<br>
-		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
-		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-	</span>
-</footer>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-  </div>
-</body>
+  </body>
 </html>
