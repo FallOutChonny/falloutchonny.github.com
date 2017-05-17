@@ -29,7 +29,7 @@ redux 的 middleware
 被實現為 generator (es6 feature)
 類似 redux-thunk middleware
 watch/work">
-<meta property="og:updated_time" content="2017-05-17T04:43:22.000Z">
+<meta property="og:updated_time" content="2017-05-17T05:13:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux-saga-使用教學">
 <meta name="twitter:description" content="何謂 redux-saga?
@@ -70,7 +70,7 @@ watch/work">
   </nav>
   <nav id="sub-nav">
     
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
     
   </nav>
 </header>
@@ -140,6 +140,7 @@ watch/work">
 <h4 id="3、建立一個-sagaManager"><a href="#3、建立一個-sagaManager" class="headerlink" title="3、建立一個 sagaManager"></a>3、建立一個 sagaManager</h4><p>透過 Saga Manager 統一管理專案裡所有的 saga<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; fork, cancel, take &#125; <span class="keyword">from</span> <span class="string">'redux-saga/effects'</span>;</div><div class="line"><span class="keyword">import</span> authSaga <span class="keyword">from</span> <span class="string">'./modules/auth/authSaga'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span>* <span class="title">sagas</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">yield</span> [</div><div class="line">    ...authSaga,</div><div class="line">  ];</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">const</span> rootSaga = [sagas];</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  startSagas(sagaMiddleware) &#123;</div><div class="line">    rootSaga.forEach(<span class="function">(<span class="params">saga</span>) =&gt;</span> sagaMiddleware.run(saga));</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
 <h3 id="With-Hot-Reload"><a href="#With-Hot-Reload" class="headerlink" title="With Hot Reload"></a>With Hot Reload</h3><p>目前 redux-saga 官方尚未支援 Hot reload，必須要在專案中做些修改才行<br><a href="https://gist.github.com/markerikson/dc6cee36b5b6f8d718f2e24a249e0491" target="_blank" rel="external">Webpack React/Redux Hot Module Reloading (HMR) example</a></p>
 <p>在 sagaManager 中加入以下內容<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> CANCEL_SAGAS_HMR = <span class="string">'CANCEL_SAGAS_HMR'</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createAbortableSaga</span>(<span class="params">saga</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (process.env.NODE_ENV === <span class="string">'development'</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>* <span class="title">main</span>(<span class="params"></span>) </span>&#123;</div><div class="line">      <span class="keyword">const</span> sagaTask = <span class="keyword">yield</span> fork(saga);</div><div class="line">      <span class="keyword">yield</span> take(CANCEL_SAGAS_HMR);</div><div class="line">      <span class="keyword">yield</span> cancel(sagaTask);</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> saga;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</div><div class="line">  startSagas(sagaMiddleware) &#123;</div><div class="line">    rootSaga.map(createAbortableSaga).forEach(<span class="function">(<span class="params">saga</span>) =&gt;</span> sagaMiddleware.run(saga));</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  cancelSagas(store) &#123;</div><div class="line">    store.dispatch(&#123; <span class="attr">type</span>: CANCEL_SAGAS_HMR &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h3><p>這篇概略的介紹 redux-saga 的特性和常用到的 Effects，以及怎麼在專案中套用，如果想進一步了解更多可以參考以下連結<br><a href="https://github.com/redux-saga/redux-saga" target="_blank" rel="external">github</a><br><a href="https://neighborhood999.github.io/redux-saga/" target="_blank" rel="external">gitbook</a></p>
 
       
     </div>
@@ -166,7 +167,7 @@ watch/work">
   
   
     <a href="/2017/04/28/如何有效減少-webpack-打包時間/" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Viejo</strong>
       <div class="article-nav-title">如何有效減少 Webpack 打包時間？</div>
     </a>
   
