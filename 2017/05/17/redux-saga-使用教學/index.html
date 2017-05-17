@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>redux-saga-使用教學 | Chonny</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Redux-saga 使用教學何謂 Redux-saga?
+redux 的 middleware
+用於管理 Redux 非同步資料流的處理
+將 saga pattern 實踐在 react/redux 應用上
+
+特性
+集中處理 redux 副作用 (side effect, 一般泛指非同步) 問題
+被實現為 generator (es6 feature)
+類似 redux-thunk middle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redux-saga-使用教學">
+<meta property="og:url" content="http://yoursite.com/2017/05/17/redux-saga-使用教學/index.html">
+<meta property="og:site_name" content="Chonny">
+<meta property="og:description" content="Redux-saga 使用教學何謂 Redux-saga?
+redux 的 middleware
+用於管理 Redux 非同步資料流的處理
+將 saga pattern 實踐在 react/redux 應用上
+
+特性
+集中處理 redux 副作用 (side effect, 一般泛指非同步) 問題
+被實現為 generator (es6 feature)
+類似 redux-thunk middle">
+<meta property="og:updated_time" content="2017-05-17T03:15:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redux-saga-使用教學">
+<meta name="twitter:description" content="Redux-saga 使用教學何謂 Redux-saga?
+redux 的 middleware
+用於管理 Redux 非同步資料流的處理
+將 saga pattern 實踐在 react/redux 應用上
+
+特性
+集中處理 redux 副作用 (side effect, 一般泛指非同步) 問題
+被實現為 generator (es6 feature)
+類似 redux-thunk middle">
+  
+    <link rel="alternate" href="/atom.xml" title="Chonny" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link rel="stylesheet" href="/css/typing.css">
+</head>
+
+  
+    <body>
+  
+      <div id="container" class="container">
+        <article id="post-redux-saga-使用教學" class="article article-type-post" itemscope itemprop="blogPost">
+  <header id="header" class="header">
+  <nav id="main-nav" class="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+    
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redux-saga-使用教學
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry typo" itemprop="articleBody">
+      
+        <h1 id="Redux-saga-使用教學"><a href="#Redux-saga-使用教學" class="headerlink" title="Redux-saga 使用教學"></a>Redux-saga 使用教學</h1><h2 id="何謂-Redux-saga"><a href="#何謂-Redux-saga" class="headerlink" title="何謂 Redux-saga?"></a>何謂 Redux-saga?</h2><ul>
+<li>redux 的 middleware</li>
+<li>用於管理 Redux 非同步資料流的處理</li>
+<li>將 saga pattern 實踐在 react/redux 應用上</li>
+</ul>
+<h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>集中處理 redux 副作用 (side effect, 一般泛指非同步) 問題</li>
+<li>被實現為 generator (es6 feature)</li>
+<li>類似 redux-thunk middleware</li>
+<li>watch/worker（監聽-&gt;執行） 的工作形式</li>
+</ul>
+<h2 id="優點"><a href="#優點" class="headerlink" title="優點"></a>優點</h2><ul>
+<li>保持 action 和 reducer 的簡單純粹</li>
+<li>可將商業邏輯從 React Component 中抽出來，保持 View 的乾淨</li>
+<li>程式碼更容易被測試和閱讀</li>
+<li>redux-saga 提供了豐富的 API 實現 saga pattern</li>
+<li>處理複雜非同步問題，如果商業邏輯複雜，快讓 redux-saga 來拯救你</li>
+<li>使用 saga 處理資料流非常清晰，雖然一開始寫會比較繁瑣，但日後程式碼會更好維護</li>
+</ul>
+<h2 id="缺點"><a href="#缺點" class="headerlink" title="缺點"></a>缺點</h2><ul>
+<li>其他的 middleware 可能較難以和 redux-saga 搭配，使用時或許要花費一些代價，用 redux-saga 重構部分程式</li>
+<li>babel-loader 轉出來的 source map 會錯位，要手動加 debugger 比較好測試</li>
+</ul>
+<h2 id="用程式碼快速了解-redux-saga-特性"><a href="#用程式碼快速了解-redux-saga-特性" class="headerlink" title="用程式碼快速了解 redux-saga 特性"></a>用程式碼快速了解 redux-saga 特性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">import &#123;call, take, fork&#125; from &apos;redux-saga&apos;;</div><div class="line">import * as ActionTypes from &apos;./actionTypes&apos;;</div><div class="line"></div><div class="line">/**</div><div class="line"> * worker</div><div class="line"> * API 呼叫，並依據結果(成功、失敗) 更新redux state</div><div class="line"> */</div><div class="line">function* loadCourse() &#123;</div><div class="line">  yield put(&#123; type: LOAD_DATA_REQUEST &#125;);</div><div class="line">  </div><div class="line">  try &#123;</div><div class="line">    // 使用call呼叫 api</div><div class="line">    const result = yield call(api.getCourse, payload);</div><div class="line">    </div><div class="line">    // do your staff with result</div><div class="line">    // ex: normalize format</div><div class="line">    </div><div class="line">    yield put(&#123;</div><div class="line">      type: LOAD_DATA_SUCCESS,</div><div class="line">      payload: result,</div><div class="line">    &#125;);</div><div class="line">  &#125; catch (error) &#123;</div><div class="line">    yield put(&#123;</div><div class="line">      type: LOAD_DATA_FAILURE,</div><div class="line">      error</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/** </div><div class="line"> *watcher</div><div class="line"> */</div><div class="line">function* watchGetCourse() &#123;</div><div class="line">  while (true) &#123;</div><div class="line">    // 創建一個監聽“程序”</div><div class="line">    yield take(ActionTypes.GET_COURSE)</div><div class="line">    // 監聽到 GET_COURSE event後，依序啟動下面的程序</div><div class="line">    yield fork(loadCourse);</div><div class="line">    ...</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>簡單說明一下上述的程式碼：</p>
+<ol>
+<li>function 後面要加上 *，這是 generator 的寫法</li>
+<li>watchGetCourse 會在 app 執行期間持續地監聽 GET_COURSE action</li>
+<li>當GET_COURSE action 被執行時，調用 loadCourse 這個 saga function</li>
+<li>若 api 呼叫成功，dispatch LOAD_DATA_SUCCESS action，將資料更新回 store</li>
+<li>若 api 呼叫失敗，dispatch LOAD_DATA_FAILURE action，將 error log 寫進 store</li>
+</ol>
+<h2 id="Effects"><a href="#Effects" class="headerlink" title="Effects"></a>Effects</h2><p>Effect 指的是一個 javascript object，裡面包含描述副作用的訊息，redux-saga 實作了豐富的 Effect API 幫助我們實現 Saga Effect。</p>
+<p>在 redux-saga 世界裡，所有的 Effect 都必須被 yield，由 yield 傳遞给 sagaMiddleware 執行。原則上來說，所有的 yield 後面也只能跟 Effect。</p>
+<p>常用 Effects 的功能介紹：</p>
+<h3 id="1、take"><a href="#1、take" class="headerlink" title="1、take"></a>1、take</h3><p>等待 redux dispatch 匹配某個 pattern 的 action。</p>
+<p>在上面例子中，先等待一個取得課程的 action ，然後執行取得課程的 saga：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">while (true) &#123;</div><div class="line">  yield take(ActionTypes.GET_COURSE)</div><div class="line">  yield fork(loadCourse);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="2、takeEvery"><a href="#2、takeEvery" class="headerlink" title="2、takeEvery"></a>2、takeEvery</h3><p>作用和 take 一樣，不過不用寫 while，另外在被調用的 saga function 中可以直接取出 action 中的 payload 當參數<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function* login(&#123; username, password &#125;) &#123;</div><div class="line">  // do login</div><div class="line">&#125;</div><div class="line"></div><div class="line">function* watchLogin()</div><div class="line">  yield takeEvery(&apos;LOGIN_REQUEST&apos;, login);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3、fork"><a href="#3、fork" class="headerlink" title="3、fork"></a>3、fork</h3><p>調用 saga function，可以返回執行結果。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">yield fork(loadCourse);</div><div class="line">const &#123; response &#125; = yield fork(api.getCourse);</div></pre></td></tr></table></figure></p>
+<h3 id="4、call"><a href="#4、call" class="headerlink" title="4、call"></a>4、call</h3><p>與 fork 作用相同，差別在 fork 是非阻塞(non-block) 型調用，call 是阻塞(block) 型調用，所以對有順序性的操作你可以像底下這樣子寫。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">const categories = yield call(api.getCourseCategories);</div><div class="line">const courses = yield call(api.getCourses, &#123;categories&#125;);</div></pre></td></tr></table></figure>
+<h3 id="5、put"><a href="#5、put" class="headerlink" title="5、put"></a>5、put</h3><p>作用和 redux 中的 dispatch 相同。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">yield put(&#123; type: &apos;GET_COURSE&apos; &#125;);</div><div class="line">yield put(&#123; type: &apos;GET_COURSE_REQUEST&apos;, id &#125;);</div><div class="line">yield put(&#123; type: &apos;GET_COURSE_SUCCESS&apos;, data &#125;);</div><div class="line">yield put(&#123; type: &apos;GET_COURSE_FAILURE&apos;, error &#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="6、select"><a href="#6、select" class="headerlink" title="6、select"></a>6、select</h3><p>作用和 redux thunk 中的 getState 相同，若 saga 中需要使用 redux state 時，可以透過 select 來取用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const id = yield select(state =&gt; state.id);</div><div class="line">if (id) &#123;</div><div class="line">  yield call(api.getCourse(id));</div><div class="line">&#125; esle &#123;</div><div class="line">  throw new Error(&apos;id is undefined&apos;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="7、all"><a href="#7、all" class="headerlink" title="7、all"></a>7、all</h3><p>如果我們同時要 call 好幾支不同的 api，你可以這樣子寫，作用和 Promise.all 效果一樣，會等所有 call api 執行完後才往下繼續執行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const [</div><div class="line"> response: &#123; course &#125;,</div><div class="line"> response: &#123; user &#125;,</div><div class="line"> response: &#123; order &#125;, </div><div class="line">] = yield all(&#123;</div><div class="line">  call(api.getCourse, courseId),</div><div class="line">  call(api.getUser, userId),</div><div class="line">  call(api.getOrder, orderId),</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="如何在專案中導入？"><a href="#如何在專案中導入？" class="headerlink" title="如何在專案中導入？"></a>如何在專案中導入？</h2><h3 id="1、安裝-redux-saga"><a href="#1、安裝-redux-saga" class="headerlink" title="1、安裝 redux-saga"></a>1、安裝 redux-saga</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install redux-saga --save</div></pre></td></tr></table></figure>
+<p>或是透過 yarn<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yarn add redux-saga</div></pre></td></tr></table></figure></p>
+<h3 id="2、Saga-Middleware"><a href="#2、Saga-Middleware" class="headerlink" title="2、Saga Middleware"></a>2、Saga Middleware</h3><p>在建立 store 時，建立 saga middleware<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line">import &#123; createStore as _createStore, applyMiddleware, compose &#125; from &apos;redux&apos;;</div><div class="line">import &#123; createPersistor &#125; from &apos;redux-persist&apos;;</div><div class="line">import &#123; routerMiddleware &#125; from &apos;react-router-redux&apos;;</div><div class="line">import createSagaMiddleware, &#123; END &#125; from &apos;redux-saga&apos;;</div><div class="line">import reducer from &apos;./reducer&apos;;</div><div class="line">import sagaManager from &apos;./sagaManager&apos;;</div><div class="line"></div><div class="line">export default function createStore(history, client, data, persistConfig = null) &#123;</div><div class="line">  const sagaMiddleware = createSagaMiddleware();</div><div class="line">  const middleware = [</div><div class="line">    reduxRouterMiddleware,</div><div class="line">    sagaMiddleware</div><div class="line">  ];</div><div class="line">  </div><div class="line">  let enhancers = [applyMiddleware(...middleware)];</div><div class="line">  </div><div class="line">  const finalCreateStore = compose(...enhancers)(_createStore);</div><div class="line">  const store = finalCreateStore(reducer, data);</div><div class="line"></div><div class="line">  if (persistConfig) &#123;</div><div class="line">    createPersistor(store, persistConfig);</div><div class="line">    store.dispatch(&#123; type: &apos;PERSIST&apos; &#125;);</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  sagaManager.startSagas(sagaMiddleware);</div><div class="line"></div><div class="line">  if (__DEVELOPMENT__ &amp;&amp; module.hot) &#123;</div><div class="line">    module.hot.accept(&apos;./reducer&apos;, () =&gt; &#123;</div><div class="line">      store.replaceReducer(require(&apos;./reducer&apos;));</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    module.hot.accept(&apos;./sagaManager&apos;, () =&gt; &#123;</div><div class="line">      sagaManager.cancelSagas(store);</div><div class="line">	require(&apos;./sagaManager&apos;).default.startSagas(sagaMiddleware);</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line"> </div><div class="line">  store.runSaga = sagaMiddleware.run;</div><div class="line">  store.close = () =&gt; store.dispatch(END);</div><div class="line"> </div><div class="line">  return store;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="3、建立一個-sagaManager"><a href="#3、建立一個-sagaManager" class="headerlink" title="3、建立一個 sagaManager"></a>3、建立一個 sagaManager</h3><p>透過 Saga Manager 統一管理專案裡所有的 saga<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">import &#123; fork, cancel, take &#125; from &apos;redux-saga/effects&apos;;</div><div class="line">import authSaga from &apos;./modules/auth/authSaga&apos;;</div><div class="line"></div><div class="line">export function* sagas() &#123;</div><div class="line">  yield [</div><div class="line">    ...authSaga,</div><div class="line">  ];</div><div class="line">&#125;</div><div class="line"></div><div class="line">const rootSaga = [sagas];</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  startSagas(sagaMiddleware) &#123;</div><div class="line">    rootSaga.forEach((saga) =&gt; sagaMiddleware.run(saga));</div><div class="line">  &#125;,</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="With-Hot-Reload"><a href="#With-Hot-Reload" class="headerlink" title="With Hot Reload"></a>With Hot Reload</h2><p>目前 redux-saga 官方尚未支援 Hot reload，必須要在專案中做些修改才行<br><a href="https://gist.github.com/markerikson/dc6cee36b5b6f8d718f2e24a249e0491" target="_blank" rel="external">Webpack React/Redux Hot Module Reloading (HMR) example</a></p>
+<p>在 sagaManager 中加入以下內容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">const CANCEL_SAGAS_HMR = &apos;CANCEL_SAGAS_HMR&apos;;</div><div class="line"></div><div class="line">function createAbortableSaga(saga) &#123;</div><div class="line">  if (process.env.NODE_ENV === &apos;development&apos;) &#123;</div><div class="line">    return function* main() &#123;</div><div class="line">      const sagaTask = yield fork(saga);</div><div class="line">      yield take(CANCEL_SAGAS_HMR);</div><div class="line">      yield cancel(sagaTask);</div><div class="line">    &#125;;</div><div class="line">  &#125;</div><div class="line">  return saga;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default &#123;</div><div class="line">  startSagas(sagaMiddleware) &#123;</div><div class="line">    rootSaga.map(createAbortableSaga).forEach((saga) =&gt; sagaMiddleware.run(saga));</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  cancelSagas(store) &#123;</div><div class="line">    store.dispatch(&#123; type: CANCEL_SAGAS_HMR &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h2 id="在-TibaMe-2-0專案加入-Saga"><a href="#在-TibaMe-2-0專案加入-Saga" class="headerlink" title="在 TibaMe 2.0專案加入 Saga"></a>在 TibaMe 2.0專案加入 Saga</h2><p>可以參考 redux/modules/quiz 模組的寫法（若覺得 Code 寫很爛請多多包涵，主要是了解 redux-saga 用法和精神)</p>
+<p>需注意的事項：</p>
+<ol>
+<li>saga 檔案檔名以 moduleSaga.js 的格式命名</li>
+<li>function 都要打上星號 (*)</li>
+<li>watcher 寫在 export default 中</li>
+<li>redux/rootSaga.js 中註冊所寫的 saga，由 sagaMiddleware 負責啟動</li>
+</ol>
+<h2 id="總結"><a href="#總結" class="headerlink" title="總結"></a>總結</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2017/05/17/redux-saga-使用教學/" class="article-date">
+  <time datetime="2017-05-17T03:15:08.000Z" itemprop="datePublished">2017-05-17</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2017/04/28/如何有效減少-webpack-打包時間/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Viejo</strong>
+      <div class="article-nav-title">如何有效減少 Webpack 打包時間？</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+  <section id="comments" class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        <p>I’m ChonnyChu, a web developer who contributes open-source projects. You are reading my blog powered by Hexo and Typing. All articles are under CC BY-NC-ND 4.0. Follow me on Twitter for communicating, GitHub for code, and Instagram for daily.</p>
+
+
+      </div>
+    </footer>
+
+      
+  <script>
+   var disqus_shortname = 'chonny';
+   
+   var disqus_url = 'http://yoursite.com/2017/05/17/redux-saga-使用教學/';
+   
+   (function(){
+     var dsq = document.createElement('script');
+     dsq.type = 'text/javascript';
+     dsq.async = true;
+     dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+   })();
+  </script>
+
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/typing.js"></script>
+<!--[if lt IE 9]><script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.min.js"></script><![endif]-->
+
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
