@@ -29,7 +29,7 @@ redux 的 middleware
 被實現為 generator (es6 feature)
 類似 redux-thunk middleware
 watch/work">
-<meta property="og:updated_time" content="2017-05-17T05:31:00.000Z">
+<meta property="og:updated_time" content="2017-05-17T05:34:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redux-saga 使用教學">
 <meta name="twitter:description" content="何謂 redux-saga?
@@ -70,7 +70,7 @@ watch/work">
   </nav>
   <nav id="sub-nav">
     
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
     
   </nav>
 </header>
@@ -126,8 +126,8 @@ watch/work">
 <h3 id="Effects"><a href="#Effects" class="headerlink" title="Effects"></a>Effects</h3><p>Effect 指的是一個 javascript object，裡面包含描述副作用的訊息，redux-saga 實作了豐富的 Effect API 幫助我們實現 Saga Effect。在 redux-saga 世界裡，所有的 Effect 都必須被 yield，由 yield 傳遞给 sagaMiddleware 執行。原則上來說，所有的 yield 後面也只能跟 Effect。</p>
 <p>常用 Effects 的功能介紹：</p>
 <h4 id="1、take"><a href="#1、take" class="headerlink" title="1、take"></a>1、take</h4><p>等待 redux dispatch 匹配某個 pattern 的 action。<br>在上面例子中，先等待一個取得課程的 action ，然後執行取得課程的 saga：</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">  <span class="keyword">yield</span> take(ActionTypes.GET_COURSE)</div><div class="line">  <span class="keyword">yield</span> fork(loadCourse);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="2、takeEvery"><a href="#2、takeEvery" class="headerlink" title="2、takeEvery"></a>2、takeEvery</h4><p>作用和 take 一樣，不過不用寫 while，另外在被調用的 saga function 中可以直接取出 action 中的 payload 當參數<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">login</span>(<span class="params">&#123; username, password &#125;</span>) </span>&#123;</div><div class="line">  <span class="comment">// do login</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">watchLogin</span>(<span class="params"></span>)</span></div><div class="line">  <span class="title">yield</span> <span class="title">takeEvery</span>(<span class="params"><span class="string">'LOGIN_REQUEST'</span>, login</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">  <span class="keyword">yield</span> take(ActionTypes.GET_COURSE)</div><div class="line">  <span class="keyword">yield</span> fork(loadCourse);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</div><div class="line">  <span class="keyword">const</span> &#123;id&#125; = <span class="keyword">yield</span> take(ActionTypes.GET_COURSE)</div><div class="line">  <span class="keyword">yield</span> fork(loadCourse, id);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="2、takeEvery"><a href="#2、takeEvery" class="headerlink" title="2、takeEvery"></a>2、takeEvery</h4><p>作用和 take 一樣，不過不用寫 while 迴圈了，取得 action payload 的方式也不太一樣<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">login</span>(<span class="params">&#123; username, password &#125;</span>) </span>&#123;</div><div class="line">  <span class="comment">// do login</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span>* <span class="title">watchLogin</span>(<span class="params"></span>)</span></div><div class="line">  <span class="title">yield</span> <span class="title">takeEvery</span>(<span class="params"><span class="string">'LOGIN_REQUEST'</span>, login</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h4 id="3、fork"><a href="#3、fork" class="headerlink" title="3、fork"></a>3、fork</h4><p>調用 saga function，可以返回執行結果。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">yield</span> fork(loadCourse);</div><div class="line"><span class="keyword">const</span> &#123; response &#125; = <span class="keyword">yield</span> fork(api.getCourse);</div></pre></td></tr></table></figure></p>
 <h4 id="4、call"><a href="#4、call" class="headerlink" title="4、call"></a>4、call</h4><p>與 fork 作用相同，差別在 fork 是非阻塞(non-block) 型調用，call 是阻塞(block) 型調用，所以對有順序性的操作你可以像底下這樣子寫。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> categories = <span class="keyword">yield</span> call(api.getCourseCategories);</div><div class="line"><span class="keyword">const</span> courses = <span class="keyword">yield</span> call(api.getCourses, &#123;categories&#125;);</div></pre></td></tr></table></figure></p>
 <h4 id="5、put"><a href="#5、put" class="headerlink" title="5、put"></a>5、put</h4><p>作用和 redux 中的 dispatch 相同。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'GET_COURSE'</span> &#125;);</div><div class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'GET_COURSE_REQUEST'</span>, id &#125;);</div><div class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'GET_COURSE_SUCCESS'</span>, data &#125;);</div><div class="line"><span class="keyword">yield</span> put(&#123; <span class="attr">type</span>: <span class="string">'GET_COURSE_FAILURE'</span>, error &#125;);</div></pre></td></tr></table></figure></p>
@@ -167,7 +167,7 @@ watch/work">
   
   
     <a href="/2017/04/28/如何有效減少-webpack-打包時間/" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">Viejo</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">如何有效減少 Webpack 打包時間？</div>
     </a>
   
