@@ -33,7 +33,7 @@
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.09.16 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.11.17 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.11.34 PM.png">
-<meta property="og:updated_time" content="2017-08-31T09:38:56.000Z">
+<meta property="og:updated_time" content="2017-08-31T09:55:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-App-效能優化">
 <meta name="twitter:description" content="速度有多重要
@@ -69,7 +69,7 @@
   </nav>
   <nav id="sub-nav">
     
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
     
   </nav>
 </header>
@@ -152,6 +152,12 @@
 <li>如果 script 沒有相依其他的 scripts 時用 async</li>
 <li>如果 script 有相依其他的 script 時用 defer</li>
 </ul>
+<h3 id="Redux-and-Redux-saga"><a href="#Redux-and-Redux-saga" class="headerlink" title="Redux and Redux-saga"></a>Redux and Redux-saga</h3><p>你應該把所有 <code>dispatch</code> 的 <code>action</code>，寫在一起，並利用 <code>redux-saga</code> 的 <code>all</code> effect 處理。</p>
+<p>不要這樣子寫</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">  <span class="keyword">this</span>.props.fetchCategories();</div><div class="line">  <span class="keyword">this</span>.props.fetchUserCount();</div><div class="line">  <span class="keyword">this</span>.props.fetchUserCount();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>這樣寫會比上面好</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">  <span class="keyword">this</span>.props.fetch();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span>* <span class="title">fetch</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> [ </div><div class="line">    &#123; <span class="attr">response</span>: &#123; <span class="attr">data</span>: &#123; <span class="attr">results</span>: courses &#125; &#125; &#125;,</div><div class="line">    &#123; <span class="attr">response</span>: &#123; <span class="attr">data</span>: banner &#125; &#125;,</div><div class="line">    &#123; <span class="attr">response</span>: &#123; <span class="attr">data</span>: usercount &#125; &#125;,</div><div class="line">  ] = <span class="keyword">yield</span> all([</div><div class="line">    call(webApi.getCourses, post),</div><div class="line">    call(webApi.getAllBannersByUser),</div><div class="line">    call(webApi.countAllUsers),</div><div class="line">  ]);</div><div class="line">  </div><div class="line">  <span class="keyword">yield</span> all([</div><div class="line">    put(&#123;</div><div class="line">      <span class="attr">type</span>: GET_COURSES_SUCCESS,</div><div class="line">      <span class="attr">data</span>: &#123; <span class="attr">results</span>: setCoverPhoto(courses, payload.entities.categories) &#125;,</div><div class="line">    &#125;),</div><div class="line"></div><div class="line">	categories.length === <span class="number">0</span></div><div class="line">	  ? put(&#123; <span class="attr">type</span>: GET_COURSE_CATEGORY_SUCCESS, <span class="attr">result</span>: payload &#125;)</div><div class="line">	  : <span class="literal">null</span></div><div class="line">  ]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service-Worker"></a>Service-Worker</h3><ul>
 <li>透過 sw-precache-webpack-plugin 引入 service-worker 實現 PWA</li>
 <li>何謂 PWA: 透過各種技術及設計的優化來達到應用程式的體驗 並保留網頁的優勢，藉此做到最好的使用者體驗（User Experience）</li>
@@ -203,7 +209,7 @@
   
   
     <a href="/2017/05/17/redux-saga-使用教學/" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Viejo</strong>
       <div class="article-nav-title">redux-saga 使用教學</div>
     </a>
   
