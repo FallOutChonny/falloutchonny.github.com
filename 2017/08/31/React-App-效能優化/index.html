@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.09.16 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.11.17 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.11.34 PM.png">
-<meta property="og:updated_time" content="2017-09-01T00:30:10.000Z">
+<meta property="og:updated_time" content="2017-09-01T00:40:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-App-效能優化">
 <meta name="twitter:description" content="速度有多重要
@@ -73,7 +73,7 @@
   </nav>
   <nav id="sub-nav">
     
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
     
   </nav>
 </header>
@@ -103,7 +103,7 @@
 <p><img src="/images/Screen Shot 2017-08-31 at 2.26.52 PM.png" alt="alt text"></p>
 <h3 id="使用-Lighthouse"><a href="#使用-Lighthouse" class="headerlink" title="使用 Lighthouse"></a>使用 Lighthouse</h3><p>PWA 只有 45 分，不具有漸進式應用程式的特性</p>
 <p><img src="/images/Screen Shot 2017-08-31 at 2.19.53 PM.png" alt="alt text"></p>
-<p>從檢測報告可看出兩個造成效能低落的主要原因：</p>
+<p>從檢測報告可看出造成效能低落的兩個主要原因：</p>
 <ol>
 <li>JS 文件過大，首次載入會下載超過 1MB 左右的 JavaScript</li>
 </ol>
@@ -137,7 +137,7 @@
 <p><img src="/images/Screen Shot 2017-08-31 at 3.41.33 PM.png" alt=""></p>
 <h4 id="Component-Level-Code-Splitting"><a href="#Component-Level-Code-Splitting" class="headerlink" title="Component-Level Code Splitting"></a>Component-Level Code Splitting</h4><p>對於一些元件或模組，不要一開始就載入它們，例如 <code>aws-sdk</code>、<code>video.js</code> 等比較大包但又不需要馬上用到的模組，Webpack 也可以實現元件層級的分離，require.ensure 也可以應用在 Module。</p>
 <p><img src="/images/Screen Shot 2017-08-31 at 3.51.04 PM.png" alt=""></p>
-<p>以使用 <code>aws-sdk</code> 的 S3 服務為例子</p>
+<p>以使用 <code>aws-sdk</code> 的 S3 為例子</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">fileName, callbackFunc</span>) </span>&#123;</div><div class="line">  updateS3keypair().then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">require</span></div><div class="line">	  .ensure(<span class="string">'aws-sdk/clients/s3'</span>, () =&gt; &#123;</div><div class="line">		<span class="keyword">const</span> S3 = <span class="built_in">require</span>(<span class="string">'aws-sdk/clients/s3'</span>);</div><div class="line">		<span class="comment">// Use S3</span></div><div class="line">		<span class="keyword">const</span> s3 = <span class="keyword">new</span> S3(result);</div><div class="line">		<span class="keyword">const</span> params = &#123;</div><div class="line">		  <span class="attr">Key</span>: fileName,</div><div class="line">	    &#125;;</div><div class="line"></div><div class="line">		s3.getObject(params, (err, data) =&gt; &#123;</div><div class="line">		  callbackFunc(err || data);</div><div class="line">		&#125;);</div><div class="line">	  &#125;)</div><div class="line">	  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</div><div class="line">	    <span class="comment">// Handle failure</span></div><div class="line">	    <span class="built_in">console</span>.log(err);</div><div class="line">	  &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>再來是 React 的 Component 也可以改寫成 Async Cmponent，不過因為寫 require.ensure 程式碼不好閱讀，且 React 元件在 SSR 也有些雷要處理，因此直接下載 <code>react-async-component</code> 使用會比較無痛。</p>
 <p>建立一個 Async Component</p>
@@ -153,7 +153,7 @@
 <li><code>chunks</code>: 從哪些 chunk 提取共用代碼</li>
 <li><code>minChunks</code>: 總共有幾個 chunk</li>
 </ul>
-<p>在 entry 設定要打包的 chunk name 與相應的模組後，在 plugins 裡面</p>
+<p>在 entry 設定要打包的 chunk name 與要打包的模組，設定好後機著要在 plugins 裡面用 CommonChunkPlugin 將重複的模組提取到指定的 chunk，否則打包完你會發現 antd、redux 裡面都有 react。</p>
 <h3 id="Async-Load-JavaScript"><a href="#Async-Load-JavaScript" class="headerlink" title="Async Load JavaScript"></a>Async Load JavaScript</h3><p>HTML5 的 script tag 多了 <code>async</code> 和 <code>defer</code> 兩個屬性，可讓 script 以非同步的方式下載而不會停止網頁的繪製。</p>
 <h4 id="script-with-no-attribute"><a href="#script-with-no-attribute" class="headerlink" title="script with no attribute"></a>script with no attribute</h4><p>下載 JavaScript 時會中斷網頁的繪製，下載完成後會馬上 Script，等執行完後才會繼續繪製網頁</p>
 <p><img src="/images/Screen Shot 2017-08-31 at 4.40.20 PM.png" alt=""></p>
@@ -179,10 +179,10 @@
 <li><a href="http://ithelp.ithome.com.tw/articles/10186584" target="_blank" rel="external">PWA 介紹</a></li>
 </ul>
 <h3 id="CDN-amp-amp-Image-Compression"><a href="#CDN-amp-amp-Image-Compression" class="headerlink" title="CDN &amp;&amp; Image Compression"></a>CDN &amp;&amp; Image Compression</h3><ul>
-<li>將首頁的圖片壓縮後再上傳至 CDN 以提升存取速度</li>
-<li>小於 10kb 的檔案直接轉成 base64 的編碼以減少 request 數量</li>
+<li>將圖片壓縮後再上傳至 CDN 以提升存取速度</li>
+<li>小於 10kb 的圖檔可轉成 base64 的編碼以減少 HTTP Request 數量</li>
 </ul>
-<h2 id="優化成果"><a href="#優化成果" class="headerlink" title="優化成果"></a>優化成果</h2><p>對打包檔案進行優化後，初次載入的 JS 大小縮減了一半降為 500KB 左右，且分割出多個 chunk 再以非同步的方式載入網頁</p>
+<h2 id="優化成果"><a href="#優化成果" class="headerlink" title="優化成果"></a>優化成果</h2><p>對打包檔案進行優化後，初次載入的 JS 大小縮減了一半降為 500KB 左右，且分割出多個 chunk 並以非同步的方式載入網頁，加速載入速度。</p>
 <p><img src="/images/Screen Shot 2017-09-01 at 8.26.37 AM.png" alt=""></p>
 <p>再重新對優化後的網站進行檢測</p>
 <h3 id="PageSpeed-Insights"><a href="#PageSpeed-Insights" class="headerlink" title="PageSpeed Insights"></a>PageSpeed Insights</h3><p><img src="/images/Screen Shot 2017-08-31 at 5.09.12 PM.png" alt=""></p>
@@ -207,7 +207,7 @@
         
         
           <li>
-            <span class="label">Tag:</span>
+            <span class="label">Mot-clé:</span>
             
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack-react-optimize-performance/">webpack, react, optimize, performance</a></li></ul>
 
@@ -226,7 +226,7 @@
   
   
     <a href="/2017/05/17/redux-saga-使用教學/" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title">redux-saga 使用教學</div>
     </a>
   
