@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.09.16 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.11.17 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.11.34 PM.png">
-<meta property="og:updated_time" content="2017-09-01T00:40:49.000Z">
+<meta property="og:updated_time" content="2017-09-01T00:44:42.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-App-效能優化">
 <meta name="twitter:description" content="速度有多重要
@@ -73,7 +73,7 @@
   </nav>
   <nav id="sub-nav">
     
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
     
   </nav>
 </header>
@@ -153,8 +153,15 @@
 <li><code>chunks</code>: 從哪些 chunk 提取共用代碼</li>
 <li><code>minChunks</code>: 總共有幾個 chunk</li>
 </ul>
-<p>在 entry 設定要打包的 chunk name 與要打包的模組，設定好後機著要在 plugins 裡面用 CommonChunkPlugin 將重複的模組提取到指定的 chunk，否則打包完你會發現 antd、redux 裡面都有 react。</p>
+<p>在 entry 設定要打包的 chunk name 與要打包的模組，設定好後還要在 plugins 裡面用 CommonChunkPlugin 將重複的模組提取到指定的 chunk，否則打包完你會發現 antd、redux 裡面都有 react。</p>
 <h3 id="Async-Load-JavaScript"><a href="#Async-Load-JavaScript" class="headerlink" title="Async Load JavaScript"></a>Async Load JavaScript</h3><p>HTML5 的 script tag 多了 <code>async</code> 和 <code>defer</code> 兩個屬性，可讓 script 以非同步的方式下載而不會停止網頁的繪製。</p>
+<p>以下說明差異處</p>
+<ul>
+<li>綠色代表 HTML 繪製</li>
+<li>灰色代表暫停 HTML 繪製</li>
+<li>藍色代表下載 JavaScript</li>
+<li>紅色代表執行 JavaScript</li>
+</ul>
 <h4 id="script-with-no-attribute"><a href="#script-with-no-attribute" class="headerlink" title="script with no attribute"></a>script with no attribute</h4><p>下載 JavaScript 時會中斷網頁的繪製，下載完成後會馬上 Script，等執行完後才會繼續繪製網頁</p>
 <p><img src="/images/Screen Shot 2017-08-31 at 4.40.20 PM.png" alt=""></p>
 <h4 id="script-with-async-attribute"><a href="#script-with-async-attribute" class="headerlink" title="script with async attribute"></a>script with async attribute</h4><p>下載 JavaScript 不會中斷網頁的繪製，下載完成後會先中斷網頁繪製並執行 Script，執行完成後再繼續繪製網頁</p>
@@ -207,7 +214,7 @@
         
         
           <li>
-            <span class="label">Mot-clé:</span>
+            <span class="label">Tag:</span>
             
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack-react-optimize-performance/">webpack, react, optimize, performance</a></li></ul>
 
@@ -226,7 +233,7 @@
   
   
     <a href="/2017/05/17/redux-saga-使用教學/" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">redux-saga 使用教學</div>
     </a>
   
