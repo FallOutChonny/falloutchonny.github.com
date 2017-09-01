@@ -7,39 +7,43 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="ChonnyChu's Blog | Web | JavaScript | Code | React | Redux | Webpack | Chonny">
   <meta name="description" content="速度有多重要
-在周星馳電影裡有一句話說道：天下武功，無監不破，唯快不破，現在的 Web 應用比以往更具有互動性，搞定性能可以幫助你極大改善使用者的體驗。
+在周星馳電影裡有一句話說道：「天下武功，無堅不破，唯快不破」，現在的 Web 應用比以往更具有互動性，搞定性能可以幫助你極大改善使用者的體驗。
 而根據 CDN 廠商 Akamai 所發表的報告更指出，當你的網站延遲超過 3 秒，則 53％ 的使用者會跳出網站。
-檢測指標Google 有提供兩個常用的檢測工具，一般網頁可以用 PageSpeed Insights 檢測網頁與行動版本的使用者">
+檢測指標在進行優化前，要先知道問題才能對症下藥，Google 有提供兩個常用的檢測工具，一般網頁可以用 PageSpeed">
 <meta property="og:type" content="article">
 <meta property="og:title" content="React-App-效能優化">
 <meta property="og:url" content="http://falloutchonny.github.io/2017/08/31/React-App-效能優化/index.html">
 <meta property="og:site_name" content="ChonnyChu">
 <meta property="og:description" content="速度有多重要
-在周星馳電影裡有一句話說道：天下武功，無監不破，唯快不破，現在的 Web 應用比以往更具有互動性，搞定性能可以幫助你極大改善使用者的體驗。
+在周星馳電影裡有一句話說道：「天下武功，無堅不破，唯快不破」，現在的 Web 應用比以往更具有互動性，搞定性能可以幫助你極大改善使用者的體驗。
 而根據 CDN 廠商 Akamai 所發表的報告更指出，當你的網站延遲超過 3 秒，則 53％ 的使用者會跳出網站。
-檢測指標Google 有提供兩個常用的檢測工具，一般網頁可以用 PageSpeed Insights 檢測網頁與行動版本的使用者">
+檢測指標在進行優化前，要先知道問題才能對症下藥，Google 有提供兩個常用的檢測工具，一般網頁可以用 PageSpeed">
 <meta property="og:image" content="http://falloutchonny.github.io/images/1457667315-979462690.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 2.26.19 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 2.26.52 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 2.19.53 PM.png">
+<meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 3.03.39 PM.png">
+<meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-09-01 at 8.22.27 AM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/picture2.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 3.45.21 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 3.45.32 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 3.41.33 PM.png">
+<meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 3.51.04 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 4.40.20 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 4.40.12 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 4.40.42 PM.png">
+<meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-09-01 at 8.26.37 AM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.09.12 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.09.16 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.11.17 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/Screen Shot 2017-08-31 at 5.11.34 PM.png">
-<meta property="og:updated_time" content="2017-08-31T09:55:45.000Z">
+<meta property="og:updated_time" content="2017-09-01T00:30:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React-App-效能優化">
 <meta name="twitter:description" content="速度有多重要
-在周星馳電影裡有一句話說道：天下武功，無監不破，唯快不破，現在的 Web 應用比以往更具有互動性，搞定性能可以幫助你極大改善使用者的體驗。
+在周星馳電影裡有一句話說道：「天下武功，無堅不破，唯快不破」，現在的 Web 應用比以往更具有互動性，搞定性能可以幫助你極大改善使用者的體驗。
 而根據 CDN 廠商 Akamai 所發表的報告更指出，當你的網站延遲超過 3 秒，則 53％ 的使用者會跳出網站。
-檢測指標Google 有提供兩個常用的檢測工具，一般網頁可以用 PageSpeed Insights 檢測網頁與行動版本的使用者">
+檢測指標在進行優化前，要先知道問題才能對症下藥，Google 有提供兩個常用的檢測工具，一般網頁可以用 PageSpeed">
 <meta name="twitter:image" content="http://falloutchonny.github.io/images/1457667315-979462690.png">
   
     <link rel="alternate" href="/atom.xml" title="ChonnyChu" type="application/atom+xml">
@@ -69,7 +73,7 @@
   </nav>
   <nav id="sub-nav">
     
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
     
   </nav>
 </header>
@@ -91,16 +95,24 @@
     <div class="article-entry typo" itemprop="articleBody">
       
         <h2 id="速度有多重要"><a href="#速度有多重要" class="headerlink" title="速度有多重要"></a>速度有多重要</h2><p><img src="/images/1457667315-979462690.png" alt=""></p>
-<p>在周星馳電影裡有一句話說道：<strong>天下武功，無監不破，唯快不破</strong>，現在的 Web 應用比以往更具有互動性，搞定性能可以幫助你極大改善使用者的體驗。</p>
+<p>在周星馳電影裡有一句話說道：「<strong>天下武功，無堅不破，唯快不破</strong>」，現在的 Web 應用比以往更具有互動性，搞定性能可以幫助你極大改善使用者的體驗。</p>
 <p>而根據 CDN 廠商 <code>Akamai</code> 所發表的報告更指出，當你的網站延遲超過 3 秒，則 53％ 的使用者會跳出網站。</p>
-<h2 id="檢測指標"><a href="#檢測指標" class="headerlink" title="檢測指標"></a>檢測指標</h2><p>Google 有提供兩個常用的檢測工具，一般網頁可以用 <code>PageSpeed Insights</code> 檢測網頁與行動版本的使用者體驗，另外則是利用 <code>Lighthouse</code> 來做 <code>PWA</code> (Progressive Web Apps, 漸進式網頁應用程式) 的相關項目檢測。</p>
+<h2 id="檢測指標"><a href="#檢測指標" class="headerlink" title="檢測指標"></a>檢測指標</h2><p>在進行優化前，要先知道問題才能對症下藥，Google 有提供兩個常用的檢測工具，一般網頁可以用 <code>PageSpeed Insights</code> 檢測網頁與行動版本的使用者體驗，另外則是利用 <code>Lighthouse</code> 來做 <code>PWA</code> (Progressive Web Apps, 漸進式網頁應用程式) 的相關項目檢測與修改建議。</p>
 <p>先檢測看看目前正在運作的網站</p>
-<h3 id="使用-PageSpeed-Insights"><a href="#使用-PageSpeed-Insights" class="headerlink" title="使用 PageSpeed Insights"></a>使用 PageSpeed Insights</h3><p>分數滿慘烈的</p>
-<p><img src="/images/Screen Shot 2017-08-31 at 2.26.19 PM.png" alt="alt text"></p>
+<h3 id="使用-PageSpeed-Insights"><a href="#使用-PageSpeed-Insights" class="headerlink" title="使用 PageSpeed Insights"></a>使用 PageSpeed Insights</h3><p><img src="/images/Screen Shot 2017-08-31 at 2.26.19 PM.png" alt="alt text"></p>
 <p><img src="/images/Screen Shot 2017-08-31 at 2.26.52 PM.png" alt="alt text"></p>
 <h3 id="使用-Lighthouse"><a href="#使用-Lighthouse" class="headerlink" title="使用 Lighthouse"></a>使用 Lighthouse</h3><p>PWA 只有 45 分，不具有漸進式應用程式的特性</p>
 <p><img src="/images/Screen Shot 2017-08-31 at 2.19.53 PM.png" alt="alt text"></p>
-<h2 id="專案架構"><a href="#專案架構" class="headerlink" title="專案架構"></a>專案架構</h2><p>先來看看我們的架構和遇到了什麼樣的問題</p>
+<p>從檢測報告可看出兩個造成效能低落的主要原因：</p>
+<ol>
+<li>JS 文件過大，首次載入會下載超過 1MB 左右的 JavaScript</li>
+</ol>
+<p><img src="/images/Screen Shot 2017-08-31 at 3.03.39 PM.png" alt=""></p>
+<ol>
+<li>有些圖片檔案太大</li>
+</ol>
+<p><img src="/images/Screen Shot 2017-09-01 at 8.22.27 AM.png" alt=""></p>
+<h2 id="專案架構"><a href="#專案架構" class="headerlink" title="專案架構"></a>專案架構</h2><p>針對第一點 JS 檔案過大，先來看看我們的架構和遇到了什麼樣的問題</p>
 <h3 id="專案整體採用了以下技術構建"><a href="#專案整體採用了以下技術構建" class="headerlink" title="專案整體採用了以下技術構建"></a>專案整體採用了以下技術構建</h3><ul>
 <li>SPA (Single Page Application)</li>
 <li>React SSR (Server-side Rendering)</li>
@@ -113,7 +125,7 @@
 <li>功能越來越多會導致資源文件越來越大</li>
 <li>首次讀取網站時加載全部內容而導致載入時間過慢</li>
 </ul>
-<h2 id="針對程式方面的優化策略"><a href="#針對程式方面的優化策略" class="headerlink" title="針對程式方面的優化策略"></a>針對程式方面的優化策略</h2><p>接著就來分析看看有哪些方案可以實作在專案上來改善效能</p>
+<h2 id="針對程式方面的優化策略"><a href="#針對程式方面的優化策略" class="headerlink" title="針對程式方面的優化策略"></a>針對程式方面的優化策略</h2><p>接著就來分析看看有哪些方案可以實作來改善效能</p>
 <h3 id="Code-Splitting"><a href="#Code-Splitting" class="headerlink" title="Code Splitting"></a>Code Splitting</h3><p>對於大型 Web 應用而言，把所有的程式碼放到一個文件的做法效率很差，有些功能一般使用者是不會用到的，可以等跳轉到該頁面時在載入即可。</p>
 <p><img src="/images/Screen Shot 2017-08-31 at 3.45.21 PM.png" alt=""></p>
 <p>Webpack 有個功能可以把你的程式碼分離成獨立的 Chunk，而此 Chunk 可以依照需求動態載入。這個功能就是 Code Splitting，實作方式依照 Webpack 版本也不同，1 版本是用 <code>require.ensure</code>；2 版本也可以用 <code>System.import</code> 來實作。</p>
@@ -123,15 +135,16 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> store =&gt; &#123;</div><div class="line">  <span class="comment">// for Server-side check</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">require</span>.ensure !== <span class="string">'function'</span>) &#123;</div><div class="line">	<span class="built_in">require</span>.ensure = <span class="function">(<span class="params">deps, cb</span>) =&gt;</span> cb(<span class="built_in">require</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">requireAccessToken</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">const</span> &#123; user &#125; = store.getState().auth;</div><div class="line">	<span class="keyword">const</span> loginUser = <span class="keyword">await</span> getLoginUser(user);</div><div class="line">	<span class="keyword">if</span> (loginUser &amp;&amp; loginUser.info) &#123;</div><div class="line">	  <span class="keyword">await</span> store.dispatch(checkTokenAlive(loginUser.info));</div><div class="line">	&#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">path</span>: <span class="string">'/'</span>,</div><div class="line">    <span class="attr">component</span>: <span class="built_in">require</span>(<span class="string">'./containers/App/App'</span>),</div><div class="line">    <span class="attr">indexRoute</span>: &#123;</div><div class="line">      <span class="attr">component</span>: <span class="built_in">require</span>(<span class="string">'./containers/Home/Home'</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">childRoutes</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">path</span>: <span class="string">'course/:uid'</span>,</div><div class="line">		<span class="attr">onEnter</span>: requireAccessToken,</div><div class="line">		getComponent(location, cb) &#123;</div><div class="line">	      <span class="built_in">require</span>.ensure([], (<span class="built_in">require</span>) =&gt; cb(<span class="literal">null</span>, <span class="built_in">require</span>(<span class="string">'./containers/Course/Course/Course'</span>)));</div><div class="line">		&#125;,</div><div class="line">      &#125;,</div><div class="line">	],</div><div class="line">  &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>編譯結果</p>
 <p><img src="/images/Screen Shot 2017-08-31 at 3.41.33 PM.png" alt=""></p>
-<h4 id="Component-Level-Code-Splitting"><a href="#Component-Level-Code-Splitting" class="headerlink" title="Component-Level Code Splitting"></a>Component-Level Code Splitting</h4><p>對於一些元件或模組，不要一開始就載入它們，例如 <code>aws-sdk</code>、<code>video.js</code> 等比較大包但又不需要馬上用到的模組，Webpack 也可以實現元件層級的分離。</p>
-<p>require.ensure 同樣也可以套用在 Module</p>
+<h4 id="Component-Level-Code-Splitting"><a href="#Component-Level-Code-Splitting" class="headerlink" title="Component-Level Code Splitting"></a>Component-Level Code Splitting</h4><p>對於一些元件或模組，不要一開始就載入它們，例如 <code>aws-sdk</code>、<code>video.js</code> 等比較大包但又不需要馬上用到的模組，Webpack 也可以實現元件層級的分離，require.ensure 也可以應用在 Module。</p>
+<p><img src="/images/Screen Shot 2017-08-31 at 3.51.04 PM.png" alt=""></p>
+<p>以使用 <code>aws-sdk</code> 的 S3 服務為例子</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">fileName, callbackFunc</span>) </span>&#123;</div><div class="line">  updateS3keypair().then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">require</span></div><div class="line">	  .ensure(<span class="string">'aws-sdk/clients/s3'</span>, () =&gt; &#123;</div><div class="line">		<span class="keyword">const</span> S3 = <span class="built_in">require</span>(<span class="string">'aws-sdk/clients/s3'</span>);</div><div class="line">		<span class="comment">// Use S3</span></div><div class="line">		<span class="keyword">const</span> s3 = <span class="keyword">new</span> S3(result);</div><div class="line">		<span class="keyword">const</span> params = &#123;</div><div class="line">		  <span class="attr">Key</span>: fileName,</div><div class="line">	    &#125;;</div><div class="line"></div><div class="line">		s3.getObject(params, (err, data) =&gt; &#123;</div><div class="line">		  callbackFunc(err || data);</div><div class="line">		&#125;);</div><div class="line">	  &#125;)</div><div class="line">	  .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</div><div class="line">	    <span class="comment">// Handle failure</span></div><div class="line">	    <span class="built_in">console</span>.log(err);</div><div class="line">	  &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>再來是 React 的 Component 也可以改寫成 Async Cmponent，不過因為寫 require.ensure 程式碼不好閱讀，且 React 元件在 SSR 也有些雷要處理，因此直接下載 <code>react-async-component</code> 使用會比較無痛。</p>
-<p>Async Component</p>
+<p>建立一個 Async Component</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> &#123; asyncComponent &#125; <span class="keyword">from</span> <span class="string">'react-async-component'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> asyncComponent(&#123;</div><div class="line">  <span class="attr">resolve</span>: <span class="function"><span class="params">()</span> =&gt;</span></div><div class="line">    <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span></div><div class="line">      <span class="built_in">require</span>.ensure([], <span class="built_in">require</span> =&gt; &#123;</div><div class="line">        resolve(<span class="built_in">require</span>(<span class="string">'react-datepicker'</span>));</div><div class="line">      &#125;)</div><div class="line">    ),</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 <p>引用 Async Component</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> DatePicker <span class="keyword">from</span> <span class="string">'../DatePicker'</span>;</div><div class="line"></div><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> () =&gt; &lt;DatePicker /&gt;;</div></pre></td></tr></table></figure>
-<h3 id="Split-bundle-to-multiple"><a href="#Split-bundle-to-multiple" class="headerlink" title="Split bundle to multiple"></a>Split bundle to multiple</h3><p>雖然做了 Code Splitting 將其他程式碼拆出去了，但如果網站功能太多，剩下的那包 JS 還是會很大，這時可以用 Webpack 的 CommonChunksPlugin 拆解 main bundle</p>
+<h3 id="Split-single-bundle-to-multiple"><a href="#Split-single-bundle-to-multiple" class="headerlink" title="Split single bundle to multiple"></a>Split single bundle to multiple</h3><p>雖然做了 Code Splitting 將其他程式碼拆出去了，但如果網站功能太多，剩下的那包 JS 還是會很大，這時可以用 Webpack 的 CommonChunksPlugin 拆解 main bundle</p>
 <p>webpack 設定如下</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">	<span class="attr">polyfill</span>: <span class="string">'babel-polyfill'</span>,</div><div class="line">	<span class="attr">vendor</span>: [<span class="string">'babel-polyfill'</span>, ...vendor, ...react, ...antd],</div><div class="line">	<span class="attr">antd</span>: [<span class="string">'babel-polyfill'</span>, ...antd],</div><div class="line">	<span class="attr">react</span>: [<span class="string">'babel-polyfill'</span>, ...react],</div><div class="line">	<span class="attr">redux</span>: [<span class="string">'babel-polyfill'</span>, ...redux],</div><div class="line">	<span class="attr">main</span>: [<span class="string">'babel-polyfill'</span>, <span class="string">'./src/client.js'</span>],</div><div class="line">	<span class="attr">utils</span>: <span class="string">'./src/components/index.js'</span>,</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">	<span class="comment">// Extract react from antd and vendor bundle</span></div><div class="line">	<span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">	  <span class="attr">name</span>: <span class="string">'react'</span>,</div><div class="line">	  <span class="attr">chunks</span>: [<span class="string">'react'</span>, <span class="string">'redux'</span>, <span class="string">'antd'</span>, <span class="string">'vendor'</span>],</div><div class="line">	  <span class="attr">minChunks</span>: <span class="number">4</span>,</div><div class="line">	&#125;),</div><div class="line">	<span class="comment">// Extract redux from antd and vendor bundle</span></div><div class="line">	<span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">	  <span class="attr">name</span>: <span class="string">'redux'</span>,</div><div class="line">	  <span class="attr">chunks</span>: [<span class="string">'redux'</span>, <span class="string">'antd'</span>, <span class="string">'vendor'</span>],</div><div class="line">	  <span class="attr">minChunks</span>: <span class="number">3</span>,</div><div class="line">	&#125;),</div><div class="line">	<span class="comment">// Extract antd from vendor bundle</span></div><div class="line">	<span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">	  <span class="attr">name</span>: <span class="string">'antd'</span>,</div><div class="line">	  <span class="attr">chunks</span>: [<span class="string">'antd'</span>, <span class="string">'vendor'</span>],</div><div class="line">	  <span class="attr">minChunks</span>: <span class="number">2</span>,</div><div class="line">	&#125;),</div><div class="line">  ],</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>參數說明：</p>
@@ -140,6 +153,7 @@
 <li><code>chunks</code>: 從哪些 chunk 提取共用代碼</li>
 <li><code>minChunks</code>: 總共有幾個 chunk</li>
 </ul>
+<p>在 entry 設定要打包的 chunk name 與相應的模組後，在 plugins 裡面</p>
 <h3 id="Async-Load-JavaScript"><a href="#Async-Load-JavaScript" class="headerlink" title="Async Load JavaScript"></a>Async Load JavaScript</h3><p>HTML5 的 script tag 多了 <code>async</code> 和 <code>defer</code> 兩個屬性，可讓 script 以非同步的方式下載而不會停止網頁的繪製。</p>
 <h4 id="script-with-no-attribute"><a href="#script-with-no-attribute" class="headerlink" title="script with no attribute"></a>script with no attribute</h4><p>下載 JavaScript 時會中斷網頁的繪製，下載完成後會馬上 Script，等執行完後才會繼續繪製網頁</p>
 <p><img src="/images/Screen Shot 2017-08-31 at 4.40.20 PM.png" alt=""></p>
@@ -152,22 +166,25 @@
 <li>如果 script 沒有相依其他的 scripts 時用 async</li>
 <li>如果 script 有相依其他的 script 時用 defer</li>
 </ul>
-<h3 id="Redux-and-Redux-saga"><a href="#Redux-and-Redux-saga" class="headerlink" title="Redux and Redux-saga"></a>Redux and Redux-saga</h3><p>你應該把所有 <code>dispatch</code> 的 <code>action</code>，寫在一起，並利用 <code>redux-saga</code> 的 <code>all</code> effect 處理。</p>
+<h3 id="Optimizing-React-amp-amp-Redux"><a href="#Optimizing-React-amp-amp-Redux" class="headerlink" title="Optimizing React &amp;&amp; Redux"></a>Optimizing React &amp;&amp; Redux</h3><h4 id="Make-use-of-the-shouldComponentUpdate-method"><a href="#Make-use-of-the-shouldComponentUpdate-method" class="headerlink" title="Make use of the shouldComponentUpdate method"></a>Make use of the shouldComponentUpdate method</h4><p>針對效能較差的頁面，可以使用 React 推出的 Perf Addon 檢測效能，再針對效能較差的元件寫 <code>shouldComponentUpdate</code> 函式減少不必要的更新。</p>
+<h4 id="Batch-Actions-into-a-Single-Dispatch"><a href="#Batch-Actions-into-a-Single-Dispatch" class="headerlink" title="Batch Actions into a Single Dispatch"></a>Batch Actions into a Single Dispatch</h4><p>你應該把所有 <code>dispatch action</code> 寫在一起，並使用 <code>redux-saga</code> 的 <code>all effect</code> 來處理多個 <code>API</code> 的呼叫和 <code>Action</code> 的調用。</p>
 <p>不要這樣子寫</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">  <span class="keyword">this</span>.props.fetchCategories();</div><div class="line">  <span class="keyword">this</span>.props.fetchUserCount();</div><div class="line">  <span class="keyword">this</span>.props.fetchUserCount();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>這樣寫會比上面好</p>
+<p>這樣寫會比較好</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">  <span class="keyword">this</span>.props.fetch();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span>* <span class="title">fetch</span>(<span class="params"></span>) </span>&#123;</div><div class="line">  <span class="keyword">const</span> [ </div><div class="line">    &#123; <span class="attr">response</span>: &#123; <span class="attr">data</span>: &#123; <span class="attr">results</span>: courses &#125; &#125; &#125;,</div><div class="line">    &#123; <span class="attr">response</span>: &#123; <span class="attr">data</span>: banner &#125; &#125;,</div><div class="line">    &#123; <span class="attr">response</span>: &#123; <span class="attr">data</span>: usercount &#125; &#125;,</div><div class="line">  ] = <span class="keyword">yield</span> all([</div><div class="line">    call(webApi.getCourses, post),</div><div class="line">    call(webApi.getAllBannersByUser),</div><div class="line">    call(webApi.countAllUsers),</div><div class="line">  ]);</div><div class="line">  </div><div class="line">  <span class="keyword">yield</span> all([</div><div class="line">    put(&#123;</div><div class="line">      <span class="attr">type</span>: GET_COURSES_SUCCESS,</div><div class="line">      <span class="attr">data</span>: &#123; <span class="attr">results</span>: setCoverPhoto(courses, payload.entities.categories) &#125;,</div><div class="line">    &#125;),</div><div class="line"></div><div class="line">	categories.length === <span class="number">0</span></div><div class="line">	  ? put(&#123; <span class="attr">type</span>: GET_COURSE_CATEGORY_SUCCESS, <span class="attr">result</span>: payload &#125;)</div><div class="line">	  : <span class="literal">null</span></div><div class="line">  ]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="Service-Worker"><a href="#Service-Worker" class="headerlink" title="Service-Worker"></a>Service-Worker</h3><ul>
-<li>透過 sw-precache-webpack-plugin 引入 service-worker 實現 PWA</li>
-<li>何謂 PWA: 透過各種技術及設計的優化來達到應用程式的體驗 並保留網頁的優勢，藉此做到最好的使用者體驗（User Experience）</li>
+<li>何謂 PWA: 透過各種技術及設計的優化來達到應用程式的體驗 並保留網頁的優</li>
+<li>使用 sw-precache-webpack-plugin 和 html-webpack-plugin 引入 sw 實現 PWA<br>勢，藉此做到最好的使用者體驗（User Experience）</li>
 <li><a href="http://ithelp.ithome.com.tw/articles/10186584" target="_blank" rel="external">PWA 介紹</a></li>
 </ul>
 <h3 id="CDN-amp-amp-Image-Compression"><a href="#CDN-amp-amp-Image-Compression" class="headerlink" title="CDN &amp;&amp; Image Compression"></a>CDN &amp;&amp; Image Compression</h3><ul>
 <li>將首頁的圖片壓縮後再上傳至 CDN 以提升存取速度</li>
 <li>小於 10kb 的檔案直接轉成 base64 的編碼以減少 request 數量</li>
 </ul>
-<h2 id="優化成果"><a href="#優化成果" class="headerlink" title="優化成果"></a>優化成果</h2><p>對優化後的網站重新進行檢測</p>
+<h2 id="優化成果"><a href="#優化成果" class="headerlink" title="優化成果"></a>優化成果</h2><p>對打包檔案進行優化後，初次載入的 JS 大小縮減了一半降為 500KB 左右，且分割出多個 chunk 再以非同步的方式載入網頁</p>
+<p><img src="/images/Screen Shot 2017-09-01 at 8.26.37 AM.png" alt=""></p>
+<p>再重新對優化後的網站進行檢測</p>
 <h3 id="PageSpeed-Insights"><a href="#PageSpeed-Insights" class="headerlink" title="PageSpeed Insights"></a>PageSpeed Insights</h3><p><img src="/images/Screen Shot 2017-08-31 at 5.09.12 PM.png" alt=""></p>
 <p><img src="/images/Screen Shot 2017-08-31 at 5.09.16 PM.png" alt=""></p>
 <h3 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h3><p><img src="/images/Screen Shot 2017-08-31 at 5.11.17 PM.png" alt=""></p>
@@ -209,7 +226,7 @@
   
   
     <a href="/2017/05/17/redux-saga-使用教學/" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">Viejo</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">redux-saga 使用教學</div>
     </a>
   
