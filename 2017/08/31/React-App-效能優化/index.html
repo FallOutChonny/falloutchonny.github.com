@@ -32,12 +32,13 @@
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.20 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.12 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.42 PM.png">
+<meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/react-perf-chrome-timeline.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-09-04 at 8.56.50 AM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 5.09.12 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 5.09.16 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 5.11.17 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 5.11.34 PM.png">
-<meta property="og:updated_time" content="2017-09-04T01:09:39.000Z">
+<meta property="og:updated_time" content="2017-09-04T01:19:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React App 效能優化">
 <meta name="twitter:description" content="速度有多重要
@@ -73,7 +74,7 @@
   </nav>
   <nav id="sub-nav">
     
-      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
     
   </nav>
 </header>
@@ -181,6 +182,8 @@
 <h3 id="Optimizing-React-amp-amp-Redux"><a href="#Optimizing-React-amp-amp-Redux" class="headerlink" title="Optimizing React &amp;&amp; Redux"></a>Optimizing React &amp;&amp; Redux</h3><h4 id="Enable-production-build"><a href="#Enable-production-build" class="headerlink" title="Enable production build"></a>Enable production build</h4><p>記得要在 webpack 的 <code>DefinePlugin</code> 中定義 <code>NODE_ENV</code> 參數為 <code>production</code>，可以大幅減少打包檔案大小和提升執行效能</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> webpack.DefinePlugin(&#123;</div><div class="line">  <span class="string">'process.env'</span>: &#123;</div><div class="line">    <span class="attr">NODE_ENV</span>: <span class="built_in">JSON</span>.stringify(<span class="string">'production'</span>),</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <h4 id="Make-use-of-the-shouldComponentUpdate-method"><a href="#Make-use-of-the-shouldComponentUpdate-method" class="headerlink" title="Make use of the shouldComponentUpdate method"></a>Make use of the shouldComponentUpdate method</h4><p>針對效能較差的頁面，可以使用 React 推出的 Perf Addon 檢測效能，再針對效能較差的元件寫 <code>shouldComponentUpdate</code> 函式減少不必要的更新。</p>
+<p>另外在 React 15.4 中引入了新的效能檢測工具與方式，可以方便與 Chrome DevTools 整合使用，簡化我們找尋效能問題的困難，使用操作可以參考 <a href="http://www.css88.com/react/docs/optimizing-performance.html" target="_blank" rel="external">React 官方的介紹</a></p>
+<p><img src="/images/react-app-optimize/react-perf-chrome-timeline.png" alt="react-perf-chrome-timeline"></p>
 <h4 id="Batch-Actions-into-a-Single-Dispatch"><a href="#Batch-Actions-into-a-Single-Dispatch" class="headerlink" title="Batch Actions into a Single Dispatch"></a>Batch Actions into a Single Dispatch</h4><p>你應該把所有 <code>dispatch action</code> 寫在一起，並使用 <code>redux-saga</code> 的 <code>all effect</code> 來處理多個 <code>API</code> 的呼叫和 <code>Action</code> 的調用。</p>
 <p>不要這樣子寫</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">componentDidMount() &#123;</div><div class="line">  <span class="keyword">this</span>.props.fetchCategories();</div><div class="line">  <span class="keyword">this</span>.props.fetchUserCount();</div><div class="line">  <span class="keyword">this</span>.props.fetchUserCount();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -220,7 +223,7 @@
         
         
           <li>
-            <span class="label">Tag:</span>
+            <span class="label">Label:</span>
             
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/optimize/">optimize</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/performance/">performance</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react/">react</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/">webpack</a></li></ul>
 
@@ -239,7 +242,7 @@
   
   
     <a href="/2017/05/17/redux-saga-使用教學/" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">Viejo</strong>
+      <strong class="article-nav-caption">Ouder</strong>
       <div class="article-nav-title">redux-saga 使用教學</div>
     </a>
   
