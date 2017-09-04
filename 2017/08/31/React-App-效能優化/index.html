@@ -37,7 +37,7 @@
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 5.09.16 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 5.11.17 PM.png">
 <meta property="og:image" content="http://falloutchonny.github.io/images/react-app-optimize/Screen Shot 2017-08-31 at 5.11.34 PM.png">
-<meta property="og:updated_time" content="2017-09-04T00:57:35.000Z">
+<meta property="og:updated_time" content="2017-09-04T01:09:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="React App 效能優化">
 <meta name="twitter:description" content="速度有多重要
@@ -99,19 +99,19 @@
 <p>而根據 CDN 廠商 <code>Akamai</code> 所發表的報告更指出，當你的網站延遲超過 3 秒，則 53％ 的使用者會跳出網站。</p>
 <h2 id="檢測指標"><a href="#檢測指標" class="headerlink" title="檢測指標"></a>檢測指標</h2><p>在進行優化前，要先知道問題才能對症下藥，Google 有提供兩個常用的檢測工具，一般網頁可以用 <code>PageSpeed Insights</code> 檢測網頁與行動版本的使用者體驗，另外則是利用 <code>Lighthouse</code> 來做 <code>PWA</code> (Progressive Web Apps, 漸進式網頁應用程式) 的相關項目檢測與修改建議。</p>
 <p>先檢測看看目前正在運作的網站</p>
-<h3 id="使用-PageSpeed-Insights"><a href="#使用-PageSpeed-Insights" class="headerlink" title="使用 PageSpeed Insights"></a>使用 PageSpeed Insights</h3><p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 2.26.19 PM.png" alt="alt text"></p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 2.26.52 PM.png" alt="alt text"></p>
+<h3 id="使用-PageSpeed-Insights"><a href="#使用-PageSpeed-Insights" class="headerlink" title="使用 PageSpeed Insights"></a>使用 PageSpeed Insights</h3><p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 2.26.19 PM.png" alt="PageSpeed Insights 行動版檢測結果"></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 2.26.52 PM.png" alt="PageSpeed Insights 網頁版檢測結果"></p>
 <h3 id="使用-Lighthouse"><a href="#使用-Lighthouse" class="headerlink" title="使用 Lighthouse"></a>使用 Lighthouse</h3><p>PWA 只有 45 分，不具有漸進式應用程式的特性</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 2.19.53 PM.png" alt="alt text"></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 2.19.53 PM.png" alt="Lighthouse 檢測結果"></p>
 <p>從檢測報告可看出造成效能低落的兩個主要原因：</p>
 <ol>
 <li>JS 文件過大，首次載入會下載超過 1MB 左右的 JavaScript</li>
 </ol>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.03.39 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.03.39 PM.png" alt="首次載入 1MB 的 JS 文件"></p>
 <ol>
 <li>有些圖片檔案太大</li>
 </ol>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-09-01 at 8.22.27 AM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-09-01 at 8.22.27 AM.png" alt="圖片檔案太大"></p>
 <h2 id="專案架構"><a href="#專案架構" class="headerlink" title="專案架構"></a>專案架構</h2><p>針對第一點 JS 檔案過大，先來看看我們的架構和遇到了什麼樣的問題</p>
 <h3 id="專案整體採用了以下技術構建"><a href="#專案整體採用了以下技術構建" class="headerlink" title="專案整體採用了以下技術構建"></a>專案整體採用了以下技術構建</h3><ul>
 <li>SPA (Single Page Application)</li>
@@ -119,7 +119,7 @@
 <li>Webpack</li>
 </ul>
 <p>我們使用 React 開發 SPA 和 SSR 實現 Universal 應用，然後在以 React 生態系的相關套件完成各種功能，打包工具則是採用 Webpack 進行模組打包。</p>
-<h3 id="會有什麼樣的問題"><a href="#會有什麼樣的問題" class="headerlink" title="會有什麼樣的問題"></a>會有什麼樣的問題</h3><p><img src="/images/react-app-optimize/picture2.png" alt=""></p>
+<h3 id="會有什麼樣的問題"><a href="#會有什麼樣的問題" class="headerlink" title="會有什麼樣的問題"></a>會有什麼樣的問題</h3><p><img src="/images/react-app-optimize/picture2.png" alt="webpack 架構圖"></p>
 <ul>
 <li>網站所用的 JavaScript、Image、CSS 等靜態資源全部打包在一起</li>
 <li>功能越來越多會導致資源文件越來越大</li>
@@ -127,16 +127,16 @@
 </ul>
 <h2 id="針對程式方面的優化策略"><a href="#針對程式方面的優化策略" class="headerlink" title="針對程式方面的優化策略"></a>針對程式方面的優化策略</h2><p>接著就來分析看看有哪些方案可以實作來改善效能</p>
 <h3 id="Code-Splitting"><a href="#Code-Splitting" class="headerlink" title="Code Splitting"></a>Code Splitting</h3><p>對於大型 Web 應用而言，把所有的程式碼放到一個文件的做法效率很差，有些功能一般使用者是不會用到的，可以等跳轉到該頁面時在載入即可。</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.45.21 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.45.21 PM.png" alt="所有模組打包在一起"></p>
 <p>Webpack 有個功能可以把你的程式碼分離成獨立的 Chunk，而此 Chunk 可以依照需求動態載入。這個功能就是 Code Splitting，實作方式依照 Webpack 版本也不同，1 版本是用 <code>require.ensure</code>；2 版本也可以用 <code>System.import</code> 來實作。</p>
 <h4 id="Route-Level-Code-Splitting"><a href="#Route-Level-Code-Splitting" class="headerlink" title="Route-Level Code Splitting"></a>Route-Level Code Splitting</h4><p>可以搭配 <code>react-router</code> 的 getComponent，以路由作為分離點產生 chunks 檔案，require 是指向 routing component (container) 的路徑。</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.45.32 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.45.32 PM.png" alt="以路由為分離點"></p>
 <p><code>routes.js</code> 部分程式碼如下</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="keyword">default</span> store =&gt; &#123;</div><div class="line">  <span class="comment">// for Server-side check</span></div><div class="line">  <span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">require</span>.ensure !== <span class="string">'function'</span>) &#123;</div><div class="line">    <span class="built_in">require</span>.ensure = <span class="function">(<span class="params">deps, cb</span>) =&gt;</span> cb(<span class="built_in">require</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">requireAccessToken</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">const</span> &#123; user &#125; = store.getState().auth;</div><div class="line">    <span class="keyword">const</span> loginUser = <span class="keyword">await</span> getLoginUser(user);</div><div class="line">    <span class="keyword">if</span> (loginUser &amp;&amp; loginUser.info) &#123;</div><div class="line">      <span class="keyword">await</span> store.dispatch(checkTokenAlive(loginUser.info));</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span> &#123;</div><div class="line">    <span class="attr">path</span>: <span class="string">'/'</span>,</div><div class="line">    <span class="attr">component</span>: <span class="built_in">require</span>(<span class="string">'./containers/App/App'</span>),</div><div class="line">    <span class="attr">indexRoute</span>: &#123;</div><div class="line">      <span class="attr">component</span>: <span class="built_in">require</span>(<span class="string">'./containers/Home/Home'</span>)</div><div class="line">    &#125;,</div><div class="line">    <span class="attr">childRoutes</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">path</span>: <span class="string">'course/:uid'</span>,</div><div class="line">        <span class="attr">onEnter</span>: requireAccessToken,</div><div class="line">        getComponent(location, cb) &#123;</div><div class="line">          <span class="built_in">require</span>.ensure([], (<span class="built_in">require</span>) =&gt; cb(<span class="literal">null</span>, <span class="built_in">require</span>(<span class="string">'./containers/Course/Course/Course'</span>)));</div><div class="line">      &#125;,</div><div class="line">    ],</div><div class="line">  &#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>編譯結果</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.41.33 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.41.33 PM.png" alt="編譯結果"></p>
 <h4 id="Component-Level-Code-Splitting"><a href="#Component-Level-Code-Splitting" class="headerlink" title="Component-Level Code Splitting"></a>Component-Level Code Splitting</h4><p>對於一些元件或模組，不要一開始就載入它們，例如 <code>aws-sdk</code>、<code>video.js</code> 等比較大包但又不需要馬上用到的模組，Webpack 也可以實現元件層級的分離，require.ensure 也可以應用在 Module。</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.51.04 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 3.51.04 PM.png" alt="以元件為中心打包"></p>
 <p>以使用 <code>aws-sdk</code> 的 S3 為例子</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getFile</span>(<span class="params">fileName, callbackFunc</span>) </span>&#123;</div><div class="line">  updateS3keypair().then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">  <span class="built_in">require</span></div><div class="line">    .ensure(<span class="string">'aws-sdk/clients/s3'</span>, () =&gt; &#123;</div><div class="line">      <span class="keyword">const</span> S3 = <span class="built_in">require</span>(<span class="string">'aws-sdk/clients/s3'</span>);</div><div class="line">      <span class="comment">// Use S3</span></div><div class="line">      <span class="keyword">const</span> s3 = <span class="keyword">new</span> S3(result);</div><div class="line">      <span class="keyword">const</span> params = &#123;</div><div class="line">        <span class="attr">Key</span>: fileName,</div><div class="line">      &#125;;</div><div class="line"></div><div class="line">      s3.getObject(params, (err, data) =&gt; &#123;</div><div class="line">        callbackFunc(err || data);</div><div class="line">      &#125;);</div><div class="line">    &#125;)</div><div class="line">    .catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</div><div class="line">      <span class="comment">// Handle failure</span></div><div class="line">      <span class="built_in">console</span>.log(err);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>再來是 React 的 Component 也可以改寫成 Async Cmponent，不過因為寫 require.ensure 程式碼不好閱讀，且 React 元件在 SSR 也有些雷要處理，因此直接下載 <code>react-async-component</code> 使用會比較無痛。</p>
@@ -168,11 +168,11 @@
 <li>紅色代表執行 JavaScript</li>
 </ul>
 <h4 id="script-with-no-attribute"><a href="#script-with-no-attribute" class="headerlink" title="script with no attribute"></a>script with no attribute</h4><p>下載 JavaScript 時會中斷網頁的繪製，下載完成後會馬上 Script，等執行完後才會繼續繪製網頁</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.20 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.20 PM.png" alt="load script with no attribute"></p>
 <h4 id="script-with-async-attribute"><a href="#script-with-async-attribute" class="headerlink" title="script with async attribute"></a>script with async attribute</h4><p>下載 JavaScript 不會中斷網頁的繪製，下載完成後會先中斷網頁繪製並執行 Script，執行完成後再繼續繪製網頁</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.12 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.12 PM.png" alt="load script with async attribute"></p>
 <h4 id="script-with-defer-attribute"><a href="#script-with-defer-attribute" class="headerlink" title="script with defer attribute"></a>script with defer attribute</h4><p>下載 JavaScript 不會中斷網頁的繪製，等網頁繪製完成後才會執行 Script</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.42 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 4.40.42 PM.png" alt="load script with defer attribute"></p>
 <p>該用哪個？ 一般情況能用 async 就用 async，再來才是 defer，使用的時機點如下</p>
 <ul>
 <li>如果 script 沒有相依其他的 scripts 時用 async</li>
@@ -198,13 +198,13 @@
 <li>小於 10kb 的圖檔可轉成 base64 的編碼以減少 HTTP Request 數量</li>
 </ul>
 <h2 id="優化成果"><a href="#優化成果" class="headerlink" title="優化成果"></a>優化成果</h2><p>對打包檔案進行優化後，初次載入的 JS 大小縮減了一半降為 500KB 左右，且分割出多個 chunk 並以非同步的方式載入網頁，加速載入速度。</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-09-04 at 8.56.50 AM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-09-04 at 8.56.50 AM.png" alt="拆成多個 Bundle 並減少體積"></p>
 <p>再重新對優化後的網站進行檢測</p>
-<h3 id="PageSpeed-Insights"><a href="#PageSpeed-Insights" class="headerlink" title="PageSpeed Insights"></a>PageSpeed Insights</h3><p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 5.09.12 PM.png" alt=""></p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 5.09.16 PM.png" alt=""></p>
-<h3 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h3><p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 5.11.17 PM.png" alt=""></p>
+<h3 id="PageSpeed-Insights"><a href="#PageSpeed-Insights" class="headerlink" title="PageSpeed Insights"></a>PageSpeed Insights</h3><p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 5.09.12 PM.png" alt="PageSpeed Insights 重新檢測結果"></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 5.09.16 PM.png" alt="PageSpeed Insights 重新檢測結果"></p>
+<h3 id="Lighthouse"><a href="#Lighthouse" class="headerlink" title="Lighthouse"></a>Lighthouse</h3><p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 5.11.17 PM.png" alt="Lighthouse 重新檢測結果"></p>
 <p>可以看到分數獲得了顯著的提升，而因為還有許多以前上傳在 AWS S3 的圖片尚未進行壓縮，因此 Insights 行動版和 Lighthouse Performance 分數會較低，目前主要的效能瓶頸卡在圖片，預計之後會再進行改善。</p>
-<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 5.11.34 PM.png" alt=""></p>
+<p><img src="/images/react-app-optimize/Screen Shot 2017-08-31 at 5.11.34 PM.png" alt="圖片太大導致載入時間過長"></p>
 
       
     </div>
